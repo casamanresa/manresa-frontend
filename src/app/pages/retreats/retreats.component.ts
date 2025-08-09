@@ -35,9 +35,8 @@ export class RetreatsComponent {
   isRegistrationFormOpen = false;
   isQRModalOpen = false;
   isZoomOpen = false;
-
-  // NEW: distinguish reservation (no payment) vs normal registration
   isReserveFlow = false;
+  isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
   selectedRetreat = "";
   formData = {
@@ -294,9 +293,6 @@ export class RetreatsComponent {
       wantsToPay: false,
     };
   }
-  private isMobile(): boolean {
-    return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-  }
 
   private sendToGoogleForm(p: {
     retreat: string;
@@ -338,10 +334,13 @@ export class RetreatsComponent {
     this.sendToGoogleForm(payload)
       .then(() => {
         if (!this.isReserveFlow && this.formData.wantsToPay) {
-          if (this.isMobile()) {
-            window.location.href = this.ATH_LINK; // mobile → open ATH
+          if (this.isMobile) {
+            alert(
+              `Antes de completar el pago en ATH Móvil, por favor escribe en el mensaje: "${this.selectedRetreat}"`
+            );
+            window.location.href = this.ATH_LINK;
           } else {
-            this.isQRModalOpen = true; // desktop → show QR
+            this.isQRModalOpen = true;
           }
         } else {
           alert("Solicitud enviada ✅");

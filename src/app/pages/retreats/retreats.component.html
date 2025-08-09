@@ -256,3 +256,49 @@
     </div>
   </div>
 </div>
+
+<!-- Modal QR -->
+<div
+  *ngIf="isQRModalOpen"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+>
+  <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg text-center">
+    <h3 class="text-xl font-semibold mb-4">Pagar con ATH Móvil</h3>
+    <p class="text-gray-600 mb-4">
+      Haz clic en el botón para abrir la app o página de ATH Móvil y completar
+      tu pago.
+    </p>
+
+    <!-- ✅ Note for all users -->
+    <p class="text-red-600 font-semibold mb-4">
+      Atención: recuerda escribir en el mensaje el retiro que seleccionaste.
+    </p>
+
+    <!-- ✅ Extra note for phone users only -->
+    <p *ngIf="isMobile" class="text-yellow-700 text-sm mb-4">
+      Si estás en el celular, puedes abrir ATH Móvil directamente y añadir el
+      mensaje allí.
+    </p>
+
+    <!-- ✅ New button to open ATH Móvil -->
+    <div class="flex gap-2 justify-center mb-4">
+      <a
+        [href]="ATH_LINK"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+      >
+        Ir a ATH Móvil
+      </a>
+    </div>
+
+    <div class="flex gap-2 justify-center">
+      <button
+        (click)="isQRModalOpen = false; closeRegistrationForm()"
+        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+</div>
