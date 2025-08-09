@@ -8,7 +8,6 @@ import { RegisterComponent } from './shared/register/register.component';
 import { UsersComponent } from './shared/users/users.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { EventsComponent } from './pages/events-component/events-component.component';
-import { RetreatRegistrationComponent } from './retreat-registration/retreat-registration.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +18,6 @@ export const routes: Routes = [
   { path: 'usuarios', component: UsersComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'eventos', component: EventsComponent },
-  { path: 'registrarse', component: RetreatRegistrationComponent },
 ];
 
 @NgModule({

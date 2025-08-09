@@ -4,75 +4,126 @@
     Eventos Especiales 2025
   </h2>
 
-  <img src="assets/eventos-nuevos.png" alt="Eventos Casa Manresa 2025" (dblclick)="openZoomModal()"
-    class="rounded-lg shadow-lg mx-auto w-full max-w-md md:max-w-xstransform transition-transform duration-300 hover:scale-110 cursor-zoom-in" />
+  <img
+    src="assets/eventos-nuevos.png"
+    alt="Eventos Casa Manresa 2025"
+    (dblclick)="openZoomModal()"
+    class="rounded-lg shadow-lg mx-auto w-full max-w-md md:max-w-xs transform transition-transform duration-300 hover:scale-110 cursor-zoom-in"
+  />
 
   <p class="text-sm text-gray-500 mt-4">
     Haz doble clic en la imagen para ampliarla.
   </p>
 </section>
 
-<!-- Full Zoom Modal for Eventos -->
-<div *ngIf="isZoomOpen" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-  <img src="assets/eventos-calendario.jpeg" alt="Zoom Eventos"
-    class="max-w-full max-h-full object-contain rounded-lg shadow-lg cursor-zoom-out" (click)="closeZoomModal()" />
+<!-- Full Zoom Modal for top calendar image -->
+<div
+  *ngIf="isZoomOpen"
+  class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+>
+  <img
+    src="assets/eventos-calendario.jpeg"
+    alt="Zoom Eventos"
+    class="max-w-full max-h-full object-contain rounded-lg shadow-lg cursor-zoom-out"
+    (click)="closeZoomModal()"
+  />
 </div>
 
+<!-- Resumen + Galerías -->
 <section class="bg-gray-50 py-12 px-4 md:px-8">
   <div class="max-w-4xl mx-auto">
     <h3 class="text-2xl font-bold text-gray-800 mb-6">Resumen de Eventos</h3>
 
-    <div class="mb-10">
-      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
-        <span class="ml-2">Abril</span>
+    <!-- Meses -->
+    <div *ngFor="let month of events" class="mb-10">
+      <h4 class="text-xl font-semibold text-red-600 mb-3 flex items-center">
+        <span class="ml-2">{{ month.name }}</span>
       </h4>
-      <ul class="list-disc pl-6 text-gray-700 space-y-2">
-        <li>
-          6: ¡Cáminalo por Manresa!
-          <span class="bg-gray-300 text-gray-700 text-xs font-semibold px-2 py-1 rounded-full ml-2">
-            Finalizado
-          </span>
+
+      <!-- Actividades -->
+      <ul class="space-y-4">
+        <li
+          *ngFor="let act of month.activities"
+          class="bg-white border rounded-lg p-4"
+        >
+          <div class="flex items-center justify-between">
+            <div class="text-gray-800 font-medium">
+              {{ act.date }}: {{ act.name }}
+            </div>
+            <!-- Example badge (wire your own date logic if you want) -->
+            <!-- <span class="bg-gray-300 text-gray-700 text-xs font-semibold px-2 py-1 rounded-full">Finalizado</span> -->
+          </div>
+
+          <!-- Thumbnails (if photos exist) -->
+          <div *ngIf="act.photos?.length" class="mt-3">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <button
+                *ngFor="let p of act.photos; let i = index"
+                type="button"
+                class="group relative rounded-lg overflow-hidden border bg-white"
+                (click)="openGallery(act.photos!, i)"
+                aria-label="Ver foto"
+              >
+                <img
+                  [src]="p.src"
+                  [alt]="p.alt || act.name"
+                  loading="lazy"
+                  class="h-28 w-full object-cover group-hover:scale-105 transition-transform duration-200"
+                />
+                <div
+                  class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
+                ></div>
+              </button>
+            </div>
+            <div class="mt-2 text-xs text-gray-500">
+              {{ act.photos?.length || 0 }} foto{{
+                (act.photos?.length || 0) > 1 ? "s" : ""
+              }}
+            </div>
+          </div>
         </li>
-      </ul>
-    </div>
-
-    <div class="mb-10">
-      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
-        <span class="ml-2">Junio</span>
-      </h4>
-      <ul class="list-disc pl-6 text-gray-700 space-y-2">
-        <li>
-          29: Misa de aniversario
-
-        </li>
-      </ul>
-    </div>
-
-    <div class="mb-10">
-      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
-        <span class="ml-2">Agosto</span>
-      </h4>
-      <ul class="list-disc pl-6 text-gray-700 space-y-2">
-        <li>23: Cena bailable</li>
-      </ul>
-    </div>
-
-    <div class="mb-10">
-      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
-        <span class="ml-2">Octubre - Noviembre</span>
-      </h4>
-      <ul class="list-disc pl-6 text-gray-700 space-y-2">
-        <li>21 oct - 3 nov: Crucero Peregrinación</li>
-      </ul>
-    </div>
-
-    <div class="mb-10">
-      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
-        <span class="ml-2">Diciembre</span>
-      </h4>
-      <ul class="list-disc pl-6 text-gray-700 space-y-2">
-        <li>27 dic - 6 ene 2026: Manresa iluminada en Navidad</li>
       </ul>
     </div>
   </div>
 </section>
+
+<!-- Fullscreen gallery modal (for activity photos) -->
+<div
+  *ngIf="isGalleryOpen"
+  class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+>
+  <div class="relative max-w-[90vw] max-h-[90vh] w-[900px]">
+    <img
+      [src]="gallery[currentIndex]?.src"
+      [alt]="gallery[currentIndex]?.alt || 'Foto de evento'"
+      class="max-h-[80vh] w-full object-contain rounded-lg shadow-lg"
+    />
+
+    <!-- Controls -->
+    <button
+      (click)="closeGallery()"
+      class="absolute top-2 right-2 px-3 py-1.5 bg-gray-800/80 text-white rounded hover:bg-gray-800"
+    >
+      Cerrar
+    </button>
+
+    <button
+      (click)="prev()"
+      class="absolute left-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-gray-800/70 text-white rounded-full hover:bg-gray-800"
+      aria-label="Foto anterior"
+    >
+      ‹
+    </button>
+    <button
+      (click)="next()"
+      class="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-gray-800/70 text-white rounded-full hover:bg-gray-800"
+      aria-label="Foto siguiente"
+    >
+      ›
+    </button>
+
+    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-white text-sm">
+      {{ currentIndex + 1 }} / {{ gallery.length }}
+    </div>
+  </div>
+</div>
