@@ -1,0 +1,42 @@
+<div class="p-6 max-w-xl mx-auto bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-bold mb-4">Formulario de Inscripción</h2>
+  
+    <form (ngSubmit)="submitForm()" #form="ngForm">
+      <div class="mb-4">
+        <label class="block text-gray-700">Nombre</label>
+        <input
+          [(ngModel)]="formData.name"
+          name="name"
+          required
+          class="w-full border px-3 py-2 rounded"
+        />
+      </div>
+  
+      <div class="mb-4">
+        <label class="block text-gray-700">Teléfono</label>
+        <input
+          [(ngModel)]="formData.phone"
+          name="phone"
+          required
+          class="w-full border px-3 py-2 rounded"
+        />
+      </div>
+  
+      <div class="mb-4">
+        <label class="block text-gray-700">¿Deseas pagar por ATH Móvil?</label>
+        <select [(ngModel)]="formData.pagaConAth" name="pagaConAth" class="w-full px-3 py-2 border rounded">
+          <option [ngValue]="true">Sí</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+  
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+      >
+        Enviar
+      </button>
+    </form>
+  </div>
+  

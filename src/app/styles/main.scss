@@ -1,0 +1,9 @@
+// styles/base
+// This folder contains the foundational SCSS files for the project:
+// 1. `variables.scss`: Global variables for colors, fonts, and spacing.
+// 2. `mixins.scss`: Reusable mixins for styling patterns.
+// 3. `typography.scss`: Global typography rules for consistent text styling.
+// 4. `utilities.scss`: Utility classes for quick, low-level styling.
+// These files ensure consistent design and reusable styles across components.
+
+@use "../styles/base/variables";

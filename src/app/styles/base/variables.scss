@@ -1,0 +1,33 @@
+
+// variables.scss
+// This file contains all the SCSS variables used across the project.
+// Use this file to define global color schemes, font sizes, spacing units,
+// breakpoints, and other reusable values to maintain consistency.
+
+
+// COLORS
+$background-color: #f8f9fa; // Light background color
+$card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow
+$primary-color: #2a45afe1; // Primary brand color
+$secondary-color: #007bff; // Secondary color (button-primary)
+$hover-primary-color: #0056b3; // Hover state for primary
+$white: #ffffff; // White color
+$black: #000000; // Black color
+$gray-dark: #555; // Dark gray for text
+$gray-light: #f8f9fa; // Light gray for backgrounds
+$blue-dark: #0056b3; // Dark blue for links or buttons
+
+// UTILITIES
+$spacer: 1rem; // Base spacing unit
+$spacerHero: 0 1rem / 2; // Hero spacing
+$section-padding: 4rem; // Default section padding
+$container-max-width: 60%; // Default container width
+
+// TYPOGRAPHY
+$font-size-base: 1rem; // Base font size
+$font-size-lg: 1.25rem; // Large font size
+$font-size-xl: 3rem; // Extra-large font size (e.g., headings)
+$line-height-base: 1.5; // Base line height
+$line-height-lg: 1.75; // Large line height
+$font-weight-light: 300; // Light font weight
+$font-weight-bold: 700; // Bold font weight

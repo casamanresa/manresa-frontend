@@ -1,0 +1,78 @@
+<!-- Eventos 2025 Full Calendar -->
+<section class="bg-white py-16 px-4 md:px-8 text-center">
+  <h2 class="text-3xl font-extrabold text-gray-800 mt-6 mb-6">
+    Eventos Especiales 2025
+  </h2>
+
+  <img src="assets/eventos-nuevos.png" alt="Eventos Casa Manresa 2025" (dblclick)="openZoomModal()"
+    class="rounded-lg shadow-lg mx-auto w-full max-w-md md:max-w-xstransform transition-transform duration-300 hover:scale-110 cursor-zoom-in" />
+
+  <p class="text-sm text-gray-500 mt-4">
+    Haz doble clic en la imagen para ampliarla.
+  </p>
+</section>
+
+<!-- Full Zoom Modal for Eventos -->
+<div *ngIf="isZoomOpen" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+  <img src="assets/eventos-calendario.jpeg" alt="Zoom Eventos"
+    class="max-w-full max-h-full object-contain rounded-lg shadow-lg cursor-zoom-out" (click)="closeZoomModal()" />
+</div>
+
+<section class="bg-gray-50 py-12 px-4 md:px-8">
+  <div class="max-w-4xl mx-auto">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Resumen de Eventos</h3>
+
+    <div class="mb-10">
+      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
+        <span class="ml-2">Abril</span>
+      </h4>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>
+          6: ¡Cáminalo por Manresa!
+          <span class="bg-gray-300 text-gray-700 text-xs font-semibold px-2 py-1 rounded-full ml-2">
+            Finalizado
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mb-10">
+      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
+        <span class="ml-2">Junio</span>
+      </h4>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>
+          29: Misa de aniversario
+
+        </li>
+      </ul>
+    </div>
+
+    <div class="mb-10">
+      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
+        <span class="ml-2">Agosto</span>
+      </h4>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>23: Cena bailable</li>
+      </ul>
+    </div>
+
+    <div class="mb-10">
+      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
+        <span class="ml-2">Octubre - Noviembre</span>
+      </h4>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>21 oct - 3 nov: Crucero Peregrinación</li>
+      </ul>
+    </div>
+
+    <div class="mb-10">
+      <h4 class="text-xl font-semibold text-red-600 mb-2 flex items-center">
+        <span class="ml-2">Diciembre</span>
+      </h4>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>27 dic - 6 ene 2026: Manresa iluminada en Navidad</li>
+      </ul>
+    </div>
+  </div>
+</section>
